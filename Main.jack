@@ -1,0 +1,13 @@
+class Main{
+    function void main(){
+        var Ball ball;
+        var int x;
+        var Line_board line;
+        let ball = Ball.new(150,150,12);
+        do ball.draw();
+        do Line_board.draw(8016);
+        let x = 0;
+        do ball.moveDown();
+        return;
+    }
+}

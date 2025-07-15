@@ -1,0 +1,19 @@
+function Main.main 3
+    push constant 150
+    push constant 150
+    push constant 12
+    call Ball.new 3
+    pop local 0
+    push local 0
+    call Ball.draw 1
+    pop temp 0
+    push constant 8016
+    call Line_board.draw 1
+    pop temp 0
+    push constant 0
+    pop local 1
+    push local 0
+    call Ball.moveDown 1
+    pop temp 0
+    push constant 0
+    return
