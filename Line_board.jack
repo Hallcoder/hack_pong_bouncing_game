@@ -2,28 +2,27 @@ class Line_board {
     field int x,y;
     field int length;
 
-   		function void draw(int location) {
-	var int memAddress;
-	let memAddress = 16384 + location;
-	do Memory.poke(memAddress + 0, 0);
-	do Memory.poke(memAddress + 32, 0);
-	do Memory.poke(memAddress + 64, 0);
-	do Memory.poke(memAddress + 96, 0);
-	do Memory.poke(memAddress + 128, 0);
-	do Memory.poke(memAddress + 160, 0);
-	do Memory.poke(memAddress + 192, 0);
-	do Memory.poke(memAddress + 224, 0);
-	do Memory.poke(memAddress + 256, 0);
-	do Memory.poke(memAddress + 288, 0);
-	do Memory.poke(memAddress + 320, -1);
-	do Memory.poke(memAddress + 352, -1);
-	do Memory.poke(memAddress + 384, -1);
-	do Memory.poke(memAddress + 416, -1);
-	do Memory.poke(memAddress + 448, -1);
-	do Memory.poke(memAddress + 480, 0);
-	return;
-}
-
+    constructor Line_board new(int Ax, int Ay, int Alength){
+        let x = Ax;
+        let y = Ay;
+        let length = Alength;
+        return this;
+    }
     
+   	method void draw() {
+    do Screen.setColor(true);
+	do Screen.drawRectangle(x,y,x+length,y+length);
+	return;
+    }
+
+    method void move(int keyPressed){
+        do Screen.setColor(false);
+        do Screen.drawRectangle(x,y,(x-length)+1,y+length);
+        let x = x+2;
+        do Screen.setColor(true);
+        do Screen.drawRectangle((x+length)-2,y+length,(x+length)-1,y+length);
+        return;
+    }
+
 
 }

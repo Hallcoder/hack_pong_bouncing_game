@@ -71,7 +71,63 @@ function Line_board.draw 1
     call Memory.poke 2
     pop temp 0
     push local 0
+    push constant 321
+    add
+    push constant 1
+    neg
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 322
+    add
+    push constant 1
+    neg
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 323
+    add
+    push constant 1
+    neg
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 324
+    add
+    push constant 1
+    neg
+    call Memory.poke 2
+    pop temp 0
+    push local 0
     push constant 352
+    add
+    push constant 1
+    neg
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 353
+    add
+    push constant 1
+    neg
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 354
+    add
+    push constant 1
+    neg
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 355
+    add
+    push constant 1
+    neg
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 356
     add
     push constant 1
     neg
@@ -85,6 +141,34 @@ function Line_board.draw 1
     call Memory.poke 2
     pop temp 0
     push local 0
+    push constant 385
+    add
+    push constant 1
+    neg
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 386
+    add
+    push constant 1
+    neg
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 387
+    add
+    push constant 1
+    neg
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 388
+    add
+    push constant 1
+    neg
+    call Memory.poke 2
+    pop temp 0
+    push local 0
     push constant 416
     add
     push constant 1
@@ -92,7 +176,63 @@ function Line_board.draw 1
     call Memory.poke 2
     pop temp 0
     push local 0
+    push constant 417
+    add
+    push constant 1
+    neg
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 418
+    add
+    push constant 1
+    neg
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 419
+    add
+    push constant 1
+    neg
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 420
+    add
+    push constant 1
+    neg
+    call Memory.poke 2
+    pop temp 0
+    push local 0
     push constant 448
+    add
+    push constant 1
+    neg
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 449
+    add
+    push constant 1
+    neg
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 450
+    add
+    push constant 1
+    neg
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 451
+    add
+    push constant 1
+    neg
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 452
     add
     push constant 1
     neg

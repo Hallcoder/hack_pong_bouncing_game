@@ -9,30 +9,38 @@ class Ball {
         let radius = Aradius;
         return this;
     }
+
     method void setRadius(int x){
         let radius = x;
         return;
     }
+
     method void draw() {
         do Screen.setColor(true);
         do Screen.drawCircle(x,y,radius);   
         return;
     }
+
     method void moveDown(){
-    while((y+radius) < 256){
-    do Screen.setColor(false);
-    do Screen.drawCircle(x,y,radius);
-    let y = y + 2 ;
-    do Screen.setColor(true);
-    do Screen.drawCircle(x,y,radius); 
-    do Sys.wait(3);
+        while((y+radius) < 256){
+            if(y > 206){
+                return;
+            }
+            do Screen.setColor(false);
+            do Screen.drawCircle(x,y,radius);
+            let y = y + 2 ;
+            do Screen.setColor(true);
+            do Screen.drawCircle(x,y,radius); 
+            do Sys.wait(3);
+        }
+        return;
     }
-    return;
-    }
+
     method void erase(){
-    do draw();
-    return;
+        do draw();
+        return;
     }
+
     method void startMotion(){
       
       return;
