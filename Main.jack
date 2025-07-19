@@ -1,18 +1,18 @@
 class Main{
     function void main(){
         var Ball ball;
-        var int x;
+        var int x,key;
         var int ballPosition;
         var int line_position;
+        var Game gameController;
         var Line_board line;
-        let line = Line_board.new(200,250,16);
-        let ball = Ball.new(256,15,9);
+        let line = Line_board.new(240,190,100);
+        let ball = Ball.new(256,15,9,line);
         do ball.draw();
         do line.draw();
         let x = 0;
-        do ball.moveDown();
-        
-        
+        let gameController = Game.new(ball,line);
+        do gameController.startGame();
         return;
     }
 }

@@ -1,0 +1,34 @@
+function Game.new 0
+    push constant 4
+    call Memory.alloc 1
+    pop pointer 0
+    push argument 0
+    pop this 0
+    push argument 1
+    pop this 1
+    push pointer 0
+    return
+function Game.startGame 0
+    push argument 0
+    pop pointer 0
+label Game_0
+    push constant 1
+    neg
+    not
+    if-goto Game_1
+    push this 0
+    push constant 190
+    call Ball.moveDown 2
+    pop temp 0
+    push constant 3
+    call Sys.wait 1
+    pop temp 0
+    goto Game_0
+label Game_1
+    push constant 0
+    return
+function Game.writeScore 0
+    push argument 0
+    pop pointer 0
+    push constant 0
+    return

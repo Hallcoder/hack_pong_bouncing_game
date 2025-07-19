@@ -2,11 +2,14 @@ class Ball {
     field int x;
     field int y;
     field int radius;
+    field int key;
+    field Line_board board;
 
-    constructor Ball new(int Ax,int Ay,int Aradius){
+    constructor Ball new(int Ax,int Ay,int Aradius,Line_board boardX){
         let x = Ax;
         let y = Ay;
         let radius = Aradius;
+        let board = boardX;
         return this;
     }
 
@@ -21,21 +24,44 @@ class Ball {
         return;
     }
 
-    method void moveDown(){
+    method void moveDown(int screenY){
         while((y+radius) < 256){
-            if(y > 206){
-                return;
+        let key = Keyboard.keyPressed();
+            do board.move(key);
+            if(y > (screenY-10)){
+                do moveUp(key);
             }
+            do board.move(key);
             do Screen.setColor(false);
             do Screen.drawCircle(x,y,radius);
+            do board.move(key);
             let y = y + 2 ;
             do Screen.setColor(true);
             do Screen.drawCircle(x,y,radius); 
+            do board.move(key);
             do Sys.wait(3);
         }
         return;
     }
-
+    method void moveUp(int key){
+    while((y+radius) < 256){
+        let key = Keyboard.keyPressed();
+        do board.move(key);
+        if(y < 20){
+                do moveDown(190);
+        }
+        do board.move(key);
+        do Screen.setColor(false);
+        do Screen.drawCircle(x,y,radius);
+        do board.move(key);
+        let y = y - 2 ;
+        do Screen.setColor(true);
+        do Screen.drawCircle(x,y,radius); 
+        do board.move(key);
+        do Sys.wait(1);
+        }
+    return;
+    }
     method void erase(){
         do draw();
         return;

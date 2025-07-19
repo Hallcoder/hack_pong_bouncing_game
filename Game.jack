@@ -1,2 +1,23 @@
 class Game{
+    field Ball ball;
+    field Line_board board;
+    field int score;
+    field int key;
+    constructor Game new(Ball ballY, Line_board lineX){
+        let ball = ballY;
+        let board = lineX;
+        return this;
+    }
+
+    method void startGame(){
+      while(true){
+        do ball.moveDown(190); //later get this from line's Y
+        do Sys.wait(3);
+      }
+      return;
+    }
+
+    method void writeScore(){
+        return;
+    }
 }
