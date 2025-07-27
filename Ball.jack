@@ -4,12 +4,20 @@ class Ball {
     field int radius;
     field int key;
     field Line_board board;
+    field int score;
+    field int stop;
+    field int direction;
+    field int dx,dy;
+    
 
     constructor Ball new(int Ax,int Ay,int Aradius,Line_board boardX){
         let x = Ax;
         let y = Ay;
         let radius = Aradius;
         let board = boardX;
+        let stop = 0;
+        let direction = 4;
+        let dx = 4;
         return this;
     }
 
@@ -24,51 +32,85 @@ class Ball {
         return;
     }
 
-    method void moveDown(int screenY){
-        while((y+radius) < 256){
-        let key = Keyboard.keyPressed();
-            do board.move(key);
-            if(y > (screenY-10)){
-                do moveUp(key);
-            }
-            do board.move(key);
+   
+    method void updateBallDx(int dxd, int dyd){
+       let dx = dxd;
+       let dy = dyd;
+       return;
+    }
+
+    method int checkIFScoredOrFailed(){
+        if((~ (x < board.getX())) & (x < (board.getX() + board.getLength()))) {
+            do Output.moveCursor(1,0);
+            do Output.printString("+1");
+            do Output.backSpace();
+            do Output.backSpace();
+            let score = score + 1;
+            do Output.moveCursor(0,7);
+            do Output.backSpace();
+            do Output.printInt(score);
+            return 0;
+        }else{
+            do erase();
+            do Screen.clearScreen();
+            do Output.moveCursor(12, 25);  // Row 12, Column 25 (roughly center)
+            do Output.printString("Game over.");
+            do Output.println();
+            do Output.moveCursor(15, 25);  // Row 12, Column 25 (roughly center)
+            do Output.printString("Your score:");
+            do Output.printInt(score);
+            return 1;
+        }
+    }
+
+    method void moveBall(){
+        while(true){
             do Screen.setColor(false);
             do Screen.drawCircle(x,y,radius);
-            do board.move(key);
-            let y = y + 2 ;
+            let key = Keyboard.keyPressed();
+            let x = x + dx;
+            let y = y + direction;
+            //bounce off left wall
+            if(x<radius){
+                let x = radius;
+                let dx = 0 - dx;
+            }
+            //bounce off the right wall
+            if(x>(511-radius)){
+                let x = 511 - radius;
+                let dx = 0 - dx;
+            }
+            //bounce off top
+            if(y<radius){
+                let y = radius;
+                let direction = 0 - direction;
+            }
+            //bounce off bottom line_board
+            if(y > (board.getY()-radius)){
+                let stop = checkIFScoredOrFailed();
+                if(stop = 1){
+                    return;
+                }
+                let dx = dx + board.getDirection();
+                let direction = 0 - direction;
+            }
             do Screen.setColor(true);
             do Screen.drawCircle(x,y,radius); 
             do board.move(key);
-            do Sys.wait(3);
+            do Sys.wait(1);
         }
-        return;
+            return;
+
     }
-    method void moveUp(int key){
-    while((y+radius) < 256){
-        let key = Keyboard.keyPressed();
-        do board.move(key);
-        if(y < 20){
-                do moveDown(190);
-        }
-        do board.move(key);
-        do Screen.setColor(false);
-        do Screen.drawCircle(x,y,radius);
-        do board.move(key);
-        let y = y - 2 ;
-        do Screen.setColor(true);
-        do Screen.drawCircle(x,y,radius); 
-        do board.move(key);
-        do Sys.wait(1);
-        }
-    return;
-    }
+
     method void erase(){
-        do draw();
+        do Screen.setColor(false);
+        do Screen.drawCircle(x,y,radius); 
+        do dispose();
         return;
     }
 
     method void startMotion(){
-      
       return;
     }
 
