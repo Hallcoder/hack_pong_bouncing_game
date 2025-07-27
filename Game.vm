@@ -11,20 +11,33 @@ function Game.new 0
 function Game.startGame 0
     push argument 0
     pop pointer 0
-label Game_0
-    push constant 1
-    neg
-    not
-    if-goto Game_1
+    push constant 0
+    push constant 0
+    call Output.moveCursor 2
+    pop temp 0
+    push constant 8
+    call String.new 1
+    push constant 83
+    call String.appendChar 2
+    push constant 99
+    call String.appendChar 2
+    push constant 111
+    call String.appendChar 2
+    push constant 114
+    call String.appendChar 2
+    push constant 101
+    call String.appendChar 2
+    push constant 58
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 48
+    call String.appendChar 2
+    call Output.printString 1
+    pop temp 0
     push this 0
-    push constant 190
-    call Ball.moveDown 2
+    call Ball.moveBall 1
     pop temp 0
-    push constant 3
-    call Sys.wait 1
-    pop temp 0
-    goto Game_0
-label Game_1
     push constant 0
     return
 function Game.writeScore 0

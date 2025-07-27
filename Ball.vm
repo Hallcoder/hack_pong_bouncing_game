@@ -1,5 +1,5 @@
 function Ball.new 0
-    push constant 5
+    push constant 10
     call Memory.alloc 1
     pop pointer 0
     push argument 0
@@ -10,6 +10,12 @@ function Ball.new 0
     pop this 2
     push argument 3
     pop this 4
+    push constant 0
+    pop this 6
+    push constant 4
+    pop this 7
+    push constant 4
+    pop this 8
     push pointer 0
     return
 function Ball.setRadius 0
@@ -33,126 +39,242 @@ function Ball.draw 0
     pop temp 0
     push constant 0
     return
-function Ball.moveDown 0
+function Ball.updateBallDx 0
     push argument 0
     pop pointer 0
-label Ball_0
-    push this 1
-    push this 2
-    add
-    push constant 256
-    lt
-    not
-    if-goto Ball_1
-    call Keyboard.keyPressed 0
-    pop this 3
-    push this 4
-    push this 3
-    call Line_board.move 2
-    pop temp 0
-    push this 1
     push argument 1
-    push constant 10
-    sub
-    gt
-    not
-    if-goto Ball_3
-    push pointer 0
-    push this 3
-    call Ball.moveUp 2
-    pop temp 0
-    goto Ball_2
-label Ball_3
-label Ball_2
-    push this 4
-    push this 3
-    call Line_board.move 2
-    pop temp 0
-    push constant 0
-    call Screen.setColor 1
-    pop temp 0
-    push this 0
-    push this 1
-    push this 2
-    call Screen.drawCircle 3
-    pop temp 0
-    push this 4
-    push this 3
-    call Line_board.move 2
-    pop temp 0
-    push this 1
-    push constant 2
-    add
-    pop this 1
-    push constant 1
-    neg
-    call Screen.setColor 1
-    pop temp 0
-    push this 0
-    push this 1
-    push this 2
-    call Screen.drawCircle 3
-    pop temp 0
-    push this 4
-    push this 3
-    call Line_board.move 2
-    pop temp 0
-    push constant 3
-    call Sys.wait 1
-    pop temp 0
-    goto Ball_0
-label Ball_1
+    pop this 8
+    push argument 2
+    pop this 9
     push constant 0
     return
-function Ball.moveUp 0
+function Ball.checkIFScoredOrFailed 0
     push argument 0
     pop pointer 0
-label Ball_4
+    push this 0
+    push this 4
+    call Line_board.getX 1
+    lt
+    not
+    push this 0
+    push this 4
+    call Line_board.getX 1
+    push this 4
+    call Line_board.getLength 1
+    add
+    lt
+    and
+    not
+    if-goto Ball_1
+    push constant 1
+    push constant 0
+    call Output.moveCursor 2
+    pop temp 0
+    push constant 2
+    call String.new 1
+    push constant 43
+    call String.appendChar 2
+    push constant 49
+    call String.appendChar 2
+    call Output.printString 1
+    pop temp 0
+    call Output.backSpace 0
+    pop temp 0
+    call Output.backSpace 0
+    pop temp 0
+    push this 5
+    push constant 1
+    add
+    pop this 5
+    push constant 0
+    push constant 7
+    call Output.moveCursor 2
+    pop temp 0
+    call Output.backSpace 0
+    pop temp 0
+    push this 5
+    call Output.printInt 1
+    pop temp 0
+    push constant 0
+    return
+    goto Ball_0
+label Ball_1
+    push pointer 0
+    call Ball.erase 1
+    pop temp 0
+    call Screen.clearScreen 0
+    pop temp 0
+    push constant 12
+    push constant 25
+    call Output.moveCursor 2
+    pop temp 0
+    push constant 10
+    call String.new 1
+    push constant 71
+    call String.appendChar 2
+    push constant 97
+    call String.appendChar 2
+    push constant 109
+    call String.appendChar 2
+    push constant 101
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 111
+    call String.appendChar 2
+    push constant 118
+    call String.appendChar 2
+    push constant 101
+    call String.appendChar 2
+    push constant 114
+    call String.appendChar 2
+    push constant 46
+    call String.appendChar 2
+    call Output.printString 1
+    pop temp 0
+    call Output.println 0
+    pop temp 0
+    push constant 15
+    push constant 25
+    call Output.moveCursor 2
+    pop temp 0
+    push constant 11
+    call String.new 1
+    push constant 89
+    call String.appendChar 2
+    push constant 111
+    call String.appendChar 2
+    push constant 117
+    call String.appendChar 2
+    push constant 114
+    call String.appendChar 2
+    push constant 32
+    call String.appendChar 2
+    push constant 115
+    call String.appendChar 2
+    push constant 99
+    call String.appendChar 2
+    push constant 111
+    call String.appendChar 2
+    push constant 114
+    call String.appendChar 2
+    push constant 101
+    call String.appendChar 2
+    push constant 58
+    call String.appendChar 2
+    call Output.printString 1
+    pop temp 0
+    push this 5
+    call Output.printInt 1
+    pop temp 0
+    push constant 1
+    return
+label Ball_0
+function Ball.moveBall 0
+    push argument 0
+    pop pointer 0
+label Ball_2
+    push constant 1
+    neg
+    not
+    if-goto Ball_3
+    push constant 0
+    call Screen.setColor 1
+    pop temp 0
+    push this 0
     push this 1
     push this 2
+    call Screen.drawCircle 3
+    pop temp 0
+    call Keyboard.keyPressed 0
+    pop this 3
+    push this 0
+    push this 8
     add
-    push constant 256
+    pop this 0
+    push this 1
+    push this 7
+    add
+    pop this 1
+    push this 0
+    push this 2
     lt
     not
     if-goto Ball_5
-    call Keyboard.keyPressed 0
-    pop argument 1
-    push this 4
-    push argument 1
-    call Line_board.move 2
-    pop temp 0
-    push this 1
-    push constant 20
-    lt
+    push this 2
+    pop this 0
+    push constant 0
+    push this 8
+    sub
+    pop this 8
+    goto Ball_4
+label Ball_5
+label Ball_4
+    push this 0
+    push constant 511
+    push this 2
+    sub
+    gt
     not
     if-goto Ball_7
-    push pointer 0
-    push constant 190
-    call Ball.moveDown 2
-    pop temp 0
+    push constant 511
+    push this 2
+    sub
+    pop this 0
+    push constant 0
+    push this 8
+    sub
+    pop this 8
     goto Ball_6
 label Ball_7
 label Ball_6
-    push this 4
-    push argument 1
-    call Line_board.move 2
-    pop temp 0
-    push constant 0
-    call Screen.setColor 1
-    pop temp 0
-    push this 0
     push this 1
     push this 2
-    call Screen.drawCircle 3
-    pop temp 0
-    push this 4
-    push argument 1
-    call Line_board.move 2
-    pop temp 0
-    push this 1
-    push constant 2
-    sub
+    lt
+    not
+    if-goto Ball_9
+    push this 2
     pop this 1
+    push constant 0
+    push this 7
+    sub
+    pop this 7
+    goto Ball_8
+label Ball_9
+label Ball_8
+    push this 1
+    push this 4
+    call Line_board.getY 1
+    push this 2
+    sub
+    gt
+    not
+    if-goto Ball_11
+    push pointer 0
+    call Ball.checkIFScoredOrFailed 1
+    pop this 6
+    push this 6
+    push constant 1
+    eq
+    not
+    if-goto Ball_13
+    push constant 0
+    return
+    goto Ball_12
+label Ball_13
+label Ball_12
+    push this 8
+    push this 4
+    call Line_board.getDirection 1
+    add
+    pop this 8
+    push constant 0
+    push this 7
+    sub
+    pop this 7
+    goto Ball_10
+label Ball_11
+label Ball_10
     push constant 1
     neg
     call Screen.setColor 1
@@ -163,21 +285,29 @@ label Ball_6
     call Screen.drawCircle 3
     pop temp 0
     push this 4
-    push argument 1
+    push this 3
     call Line_board.move 2
     pop temp 0
     push constant 1
     call Sys.wait 1
     pop temp 0
-    goto Ball_4
-label Ball_5
+    goto Ball_2
+label Ball_3
     push constant 0
     return
 function Ball.erase 0
     push argument 0
     pop pointer 0
+    push constant 0
+    call Screen.setColor 1
+    pop temp 0
+    push this 0
+    push this 1
+    push this 2
+    call Screen.drawCircle 3
+    pop temp 0
     push pointer 0
-    call Ball.draw 1
+    call Ball.dispose 1
     pop temp 0
     push constant 0
     return

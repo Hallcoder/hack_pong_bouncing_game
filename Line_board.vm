@@ -1,5 +1,5 @@
 function Line_board.new 0
-    push constant 3
+    push constant 4
     call Memory.alloc 1
     pop pointer 0
     push argument 0
@@ -31,6 +31,26 @@ function Line_board.draw 0
     pop temp 0
     push constant 0
     return
+function Line_board.getX 0
+    push argument 0
+    pop pointer 0
+    push this 0
+    return
+function Line_board.getY 0
+    push argument 0
+    pop pointer 0
+    push this 1
+    return
+function Line_board.getDirection 0
+    push argument 0
+    pop pointer 0
+    push this 3
+    return
+function Line_board.getLength 0
+    push argument 0
+    pop pointer 0
+    push this 2
+    return
 function Line_board.move 0
     push argument 0
     pop pointer 0
@@ -39,19 +59,34 @@ function Line_board.move 0
     eq
     not
     if-goto Line_board_1
+    push constant 8
+    neg
+    pop this 3
+    push this 0
+    push constant 12
+    sub
+    push constant 0
+    lt
+    not
+    if-goto Line_board_3
+    push constant 0
+    return
+    goto Line_board_2
+label Line_board_3
+label Line_board_2
     push constant 0
     call Screen.setColor 1
     pop temp 0
     push this 0
     push this 2
     add
-    push constant 2
+    push constant 12
     sub
     push this 1
     push this 0
     push this 2
     add
-    push constant 2
+    push constant 12
     add
     push this 1
     push this 2
@@ -61,7 +96,7 @@ function Line_board.move 0
     call Screen.drawRectangle 4
     pop temp 0
     push this 0
-    push constant 2
+    push constant 12
     sub
     pop this 0
     push constant 1
@@ -71,7 +106,7 @@ function Line_board.move 0
     push this 0
     push this 1
     push this 0
-    push constant 2
+    push constant 12
     add
     push this 1
     push this 2
@@ -87,14 +122,30 @@ label Line_board_0
     push constant 132
     eq
     not
-    if-goto Line_board_3
+    if-goto Line_board_5
+    push constant 8
+    pop this 3
+    push this 0
+    push this 2
+    add
+    push constant 16
+    add
+    push constant 511
+    gt
+    not
+    if-goto Line_board_7
+    push constant 0
+    return
+    goto Line_board_6
+label Line_board_7
+label Line_board_6
     push constant 0
     call Screen.setColor 1
     pop temp 0
     push this 0
     push this 1
     push this 0
-    push constant 2
+    push constant 12
     add
     push this 1
     push this 2
@@ -104,7 +155,7 @@ label Line_board_0
     call Screen.drawRectangle 4
     pop temp 0
     push this 0
-    push constant 2
+    push constant 12
     add
     pop this 0
     push constant 1
@@ -114,13 +165,13 @@ label Line_board_0
     push this 0
     push this 2
     add
-    push constant 2
+    push constant 12
     sub
     push this 1
     push this 0
     push this 2
     add
-    push constant 2
+    push constant 12
     add
     push this 1
     push this 2
@@ -129,8 +180,8 @@ label Line_board_0
     add
     call Screen.drawRectangle 4
     pop temp 0
-    goto Line_board_2
-label Line_board_3
-label Line_board_2
+    goto Line_board_4
+label Line_board_5
+label Line_board_4
     push constant 0
     return

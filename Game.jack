@@ -10,10 +10,9 @@ class Game{
     }
 
     method void startGame(){
-      while(true){
-        do ball.moveDown(190); //later get this from line's Y
-        do Sys.wait(3);
-      }
+        do Output.moveCursor(0,0);
+        do Output.printString("Score: 0");
+        do ball.moveBall(); //later get this from line's Y  
       return;
     }
 

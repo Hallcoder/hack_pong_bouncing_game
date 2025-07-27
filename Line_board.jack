@@ -1,6 +1,7 @@
 class Line_board {
     field int x,y;
     field int length;
+    field int direction;
 
     constructor Line_board new(int Ax, int Ay, int Alength){
         let x = Ax;
@@ -10,28 +11,50 @@ class Line_board {
     }
     
    	method void draw() {
-    do Screen.setColor(true);
-	do Screen.drawRectangle(x,y,x+length,y+(length/8));
-	return;
+        do Screen.setColor(true);
+        do Screen.drawRectangle(x,y,x+length,y+(length/8));
+        return;
+    }
+
+    method int getX(){
+        return x;
+    }
+
+    method int getY(){
+        return y;
+    }
+
+    method int getDirection(){
+        return direction;
+    }
+
+    method int getLength(){
+        return length;
     }
 
     method void move(int keyPressed){
         if(keyPressed = 130){
+            let direction = -8;
+            if((x-12) < 0){
+                return;
+            }
             do Screen.setColor(false);
-            do Screen.drawRectangle((x+length)-2,y,x+length+2,y+(length/8));
-            let x = x-2;
+            do Screen.drawRectangle((x+length)-12,y,x+length+12,y+(length/8));
+            let x = x-12;
             do Screen.setColor(true);
-            do Screen.drawRectangle(x,y,x+2,y+(length/8));
+            do Screen.drawRectangle(x,y,x+12,y+(length/8));
         }
         if(keyPressed = 132){
+            let direction = 8;
+            if((x+length+16) > 511){
+                return;
+            }
             do Screen.setColor(false);
-            do Screen.drawRectangle(x,y,x+2,y+(length/8));
-            let x = x+2;
+            do Screen.drawRectangle(x,y,x+12,y+(length/8));
+            let x = x+12;
             do Screen.setColor(true);
-            do Screen.drawRectangle((x+length)-2,y,x+length+2,y+(length/8));
+            do Screen.drawRectangle((x+length)-12,y,x+length+12,y+(length/8));
         }
         return;
     }
-
-
 }
